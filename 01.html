@@ -1,0 +1,67 @@
+<!-- Create a webpage that includes a table displaying student records (Name, Roll No., Marks), a 
+button to add a new record, and another button to sort the records based on marks. Ensure the 
+use of JavaScript functions for adding and sorting records.  -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Records</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const students = [];
+
+        function addRecord() {
+            const name = prompt("Enter Name:");
+            const rollNo = prompt("Enter Roll No:");
+            const marks = prompt("Enter Marks:");
+            if (name && rollNo && marks) {
+                students.push({ name, rollNo, marks: parseInt(marks) });
+                displayRecords();
+            } else {
+                alert("All fields are required!");
+            }
+        }
+
+        function sortRecords() {
+            students.sort((a, b) => b.marks - a.marks);
+            displayRecords();
+        }
+
+        function displayRecords() {
+            const tableBody = document.getElementById("studentTableBody");
+            tableBody.innerHTML = "";
+            students.forEach((student, index) => {
+                tableBody.innerHTML += `<tr>
+                    <td>${index + 2}</td>
+                    <td>${student.name}</td>
+                    <td>${student.rollNo}</td>
+                    <td>${student.marks}</td>
+                </tr>`;
+            });
+        }
+    </script>
+</head>
+
+<body class="body1">
+    <h1>Student Records</h1>
+    <table border="1" class="table1 styled-table ">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Marks</th>
+            </tr>
+        </thead>
+        <tbody id="studentTableBody">
+
+        </tbody>
+    </table>
+    <div>
+        <button onclick="addRecord()">Add Record</button>
+        <button onclick="sortRecords()">Sort by Marks</button>
+    </div>
+</body>
+
+</html>

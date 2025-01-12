@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Question: Create a webpage that includes a calculator with buttons for numbers and basic operations addition, subtraction, multiplication, division). Use JavaScript to perform the calculations. -->
+    <script>
+        function calculate(op) {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            let result = 0;
+
+            if (op === "+") result = num1 + num2;
+            if (op === "-") result = num1 - num2;
+            if (op === "*") result = num1 * num2;
+            if (op === "/") result = num1 / num2;
+
+            document.getElementById("result").textContent = `Result: ${result}`;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Calculator</h1>
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+    <div>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('/')">/</button>
+    </div>
+    <div id="result"></div>
+</body>
+
+</html>

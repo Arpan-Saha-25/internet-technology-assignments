@@ -1,0 +1,26 @@
+<!-- Create a webpage to toggle the visibility of an HTML element when a button is clicked. Use JavaScript to implement the toggle functionality. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Toggle Visibility</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function toggleElement() {
+            const element = document.getElementById("toggleElement");
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button class="button-3" onclick="toggleElement()">Toggle Element</button>
+    <div id="toggleElement" style="margin-top: 20px;">This is a toggleable element!</div>
+</body>
+
+</html>

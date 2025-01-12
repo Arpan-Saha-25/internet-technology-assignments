@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Real-Time Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Question: Create a webpage that displays a real-time clock using JavaScript. The clock should update every second and show the current time in the format HH:MM:SS. -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById("clock").textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+    </script>
+</head>
+
+<body onload="updateClock()">
+    <h1>Real-Time Clock</h1>
+    <div id="

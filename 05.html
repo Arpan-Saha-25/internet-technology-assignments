@@ -1,0 +1,35 @@
+<!-- Create an HTML form for a user login page with input fields for username and password, and a login button. Use JavaScript to validate the inputs and handle login events.  -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function validateLogin() {
+            const username = document.forms["loginForm"]["username"].value;
+            const password = document.forms["loginForm"]["password"].value;
+
+            if (!username || !password) {
+                alert("Both fields are required!");
+                return false;
+            }
+
+            alert("Login successful!");
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <form name="loginForm" onsubmit="return validateLogin()">
+        <label>Username:</label>
+        <input type="text" name="username"><br>
+        <label>Password:</label>
+        <input type="password" name="password"><br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+
+</html>

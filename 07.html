@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Question: Design a login page using HTML and CSS. Add JavaScript functionality to check if the username and password match a predefined set of credentials. Display an error message if they don't match, without refreshing the page. -->
+    <script>
+        const predefinedUser = "admin";
+        const predefinedPass = "1234";
+
+        function checkLogin() {
+            const username = document.forms["loginForm"]["username"].value;
+            const password = document.forms["loginForm"]["password"].value;
+
+            if (username === predefinedUser && password === predefinedPass) {
+                alert("Login successful!");
+            } else {
+                alert("Invalid credentials!");
+            }
+            return false; // Prevent page refresh
+        }
+    </script>
+</head>
+
+<body>
+    <form name="loginForm" onsubmit="return checkLogin()">
+        <label>Username:</label>
+        <input type="text" name="username"><br>
+        <label>Password:</label>
+        <input type="password" name="password"><br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+
+</html>

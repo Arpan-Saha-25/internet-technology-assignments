@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Question: Design a webpage with a to-do list feature where users can add, delete, and mark tasks as complete. Use JavaScript to implement the functionality for task management. -->
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const taskList = document.getElementById("taskList");
+            if (taskInput.value) {
+                const listItem = document.createElement("li");
+                listItem.textContent = taskInput.value;
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.onclick = () => listItem.remove();
+
+                listItem.appendChild(deleteButton);
+                taskList.appendChild(listItem);
+                taskInput.value = "";
+            }
+        }
+
+        function clearTasks() {
+            document.getElementById("taskList").innerHTML = "";
+        }
+    </script>
+</head>
+
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="clearTasks()">Clear All</button>
+    <ul id="taskList"></ul>
+</body>
+
+</html>

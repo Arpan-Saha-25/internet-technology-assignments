@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <!-- Question: Create an HTML page with a registration form that includes fields for name, email, password, 
+         and gender (using radio buttons). Use JavaScript to validate that all fields are filled and the email 
+         has a valid format before submission. -->
+    <script>
+        function validateRegistration() {
+            const name = document.forms["regForm"]["name"].value;
+            const email = document.forms["regForm"]["email"].value;
+            const password = document.forms["regForm"]["password"].value;
+            const gender = document.forms["regForm"]["gender"].value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name || !email || !password || !gender) {
+                alert("All fields are required!");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Enter a valid email address");
+                return false;
+            }
+
+            alert("Registration successful!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="regForm" onsubmit="return validateRegistration()">
+        <label>Name:</label>
+        <input type="text" name="name"><br>
+        <label>Email:</label>
+        <input type="text" name="email"><br>
+        <label>Password:</label>
+        <input type="password" name="password"><br>
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female<br>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
