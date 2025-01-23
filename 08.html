@@ -1,18 +1,20 @@
+<!-- Question: Create an HTML form for user registration that includes fields for username, email, 
+password, and a checkbox to agree to terms and conditions. Use JavaScript to validate that 
+all fields are filled before submission. -->
+
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Registration Form</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Question: Create an HTML form for user registration that includes fields for username, email, 
-         password, and a checkbox to agree to terms and conditions. Use JavaScript to validate that 
-         all fields are filled before submission. -->
     <script>
         function validateCheckboxForm() {
-            const username = document.forms["regForm"]["username"].value;
-            const email = document.forms["regForm"]["email"].value;
-            const password = document.forms["regForm"]["password"].value;
-            const terms = document.forms["regForm"]["terms"].checked;
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const terms = document.getElementById("terms").checked;
 
             if (!username || !email || !password || !terms) {
                 alert("All fields and agreement to terms are required!");
@@ -26,16 +28,20 @@
 </head>
 
 <body>
-    <form name="regForm" onsubmit="return validateCheckboxForm()">
-        <label>Username:</label>
-        <input type="text" name="username"><br>
-        <label>Email:</label>
-        <input type="text" name="email"><br>
-        <label>Password:</label>
-        <input type="password" name="password"><br>
+    <form id="regForm" onsubmit="return validateCheckboxForm()">
+        <label for="username">Username:</label>
+        <input type="text" id="username"><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email"><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password"><br>
+
         <label>
-            <input type="checkbox" name="terms"> I agree to the terms and conditions
+            <input type="checkbox" id="terms"> I agree to the terms and conditions
         </label><br>
+
         <button type="submit">Register</button>
     </form>
 </body>

@@ -1,21 +1,62 @@
+<!-- Question: Create a webpage that displays a real-time clock using JavaScript. The clock should update every second and show the current time in the format HH:MM:SS. -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real-Time Clock</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Question: Create a webpage that displays a real-time clock using JavaScript. The clock should update every second and show the current time in the format HH:MM:SS. -->
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            document.getElementById("clock").textContent = timeString;
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
         }
 
-        setInterval(updateClock, 1000);
-    </script>
+        #clock {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 20px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
-<body onload="updateClock()">
-    <h1>Real-Time Clock</h1>
-    <div id="
+<body>
+
+    <div id="clock">00:00:00</div>
+
+    <script>
+        // Function to update the clock every second
+        function updateClock() {
+            // Create a new Date object
+            const now = new Date();
+
+            // Get the hours, minutes, and seconds
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            // Add leading zero to single digit hours, minutes, or seconds
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            // Combine hours, minutes, and seconds into a string
+            const currentTime = hours + ':' + minutes + ':' + seconds;
+
+            // Update the clock display
+            document.getElementById('clock').textContent = currentTime;
+        }
+
+        // Update the clock every second (1000 milliseconds)
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+
+</html>

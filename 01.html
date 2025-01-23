@@ -7,61 +7,62 @@ use of JavaScript functions for adding and sorting records.  -->
 
 <head>
     <title>Student Records</title>
-    <link rel="stylesheet" href="style.css">
-    <script>
-        const students = [];
-
-        function addRecord() {
-            const name = prompt("Enter Name:");
-            const rollNo = prompt("Enter Roll No:");
-            const marks = prompt("Enter Marks:");
-            if (name && rollNo && marks) {
-                students.push({ name, rollNo, marks: parseInt(marks) });
-                displayRecords();
-            } else {
-                alert("All fields are required!");
-            }
-        }
-
-        function sortRecords() {
-            students.sort((a, b) => b.marks - a.marks);
-            displayRecords();
-        }
-
-        function displayRecords() {
-            const tableBody = document.getElementById("studentTableBody");
-            tableBody.innerHTML = "";
-            students.forEach((student, index) => {
-                tableBody.innerHTML += `<tr>
-                    <td>${index + 2}</td>
-                    <td>${student.name}</td>
-                    <td>${student.rollNo}</td>
-                    <td>${student.marks}</td>
-                </tr>`;
-            });
-        }
-    </script>
 </head>
 
-<body class="body1">
-    <h1>Student Records</h1>
-    <table border="1" class="table1 styled-table ">
+<body>
+    <table border="2" class="table" id="recordsTable">
         <thead>
             <tr>
-                <th>S.No</th>
-                <th>Name</th>
-                <th>Roll No</th>
-                <th>Marks</th>
+                <td>Name</td>
+                <td>Roll No.</td>
+                <td>Marks(500)</td>
             </tr>
         </thead>
-        <tbody id="studentTableBody">
-
+        <tbody>
+            <td>Person 1</td>
+            <td>1</td>
+            <td>235</td>
         </tbody>
     </table>
-    <div>
-        <button onclick="addRecord()">Add Record</button>
-        <button onclick="sortRecords()">Sort by Marks</button>
-    </div>
+    <button id="add">Add</button>
+    <button id="sort">Sort</button>
 </body>
+
+<script>
+
+    function addRecords() {
+        const name = prompt("Name : ");
+        const roll = prompt("Roll No. : ");
+        const marks = prompt("marks : ");
+
+        if (name && roll && marks) {
+            const table = document.getElementById("recordsTable").getElementsByTagName("tbody")[0];
+            const newRow = table.insertRow();
+
+            const nameCell = newRow.insertCell(0);
+            const rollCell = newRow.insertCell(1);
+            const marksCell = newRow.insertCell(2);
+
+            nameCell.textContent = name;
+            rollCell.textContent = roll;
+            marksCell.textContent = marks;
+        }
+    }
+
+    function sortRecords() {
+        const table = document.getElementById("recordsTable");
+        const tbody = table.getElementsByTagName("tbody")[0];
+        const rows = Array.from(tbody.rows);
+        rows.sort((a, b) => {
+            return parseInt(b.cells[2].textContent) - parseInt(a.cells[2].textContent);
+        });
+        tbody.innerHTML = ''
+        rows.forEach(row => tbody.appendChild(row));
+    }
+
+    document.getElementById("add").addEventListener("click", addRecords);
+    document.getElementById("sort").addEventListener("click", sortRecords);
+
+</script>
 
 </html>

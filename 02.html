@@ -9,8 +9,8 @@ address using JavaScript.  -->
     <link rel="stylesheet" href="style.css">
     <script>
         function validateForm() {
-            const name = document.forms["regForm"]["name"].value;
-            const email = document.forms["regForm"]["email"].value;
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             if (!name) {
@@ -22,6 +22,7 @@ address using JavaScript.  -->
                 alert("Enter a valid email address");
                 return false;
             }
+
             alert("Form submitted successfully!");
             return true;
         }
@@ -29,12 +30,14 @@ address using JavaScript.  -->
 </head>
 
 <body>
-    <form name="regForm" onsubmit="return validateForm()">
-        <label>Name:</label>
-        <input type="text" name="name"><br>
-        <label>Email:</label>
-        <input type="text" name="email"><br>
-        <div style="display: flex;align-items: center;justify-content: center;margin-top: 1.1em;">
+    <form id="regForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name"><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email"><br>
+
+        <div style="display: flex; align-items: center; justify-content: center; margin-top: 1.1em;">
             <button class="button-3" type="submit">Submit</button>
         </div>
     </form>

@@ -1,45 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
+<!-- Question: Create an HTML page with a registration form that includes fields for name, email, password, 
+and gender (using radio buttons). Use JavaScript to validate that all fields are filled and the email 
+has a valid format before submission. -->
+
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-    <!-- Question: Create an HTML page with a registration form that includes fields for name, email, password, 
-         and gender (using radio buttons). Use JavaScript to validate that all fields are filled and the email 
-         has a valid format before submission. -->
+</head>
+
+<body>
+    <div style="border: 2px solid red; padding: 20px; width: 300px; margin: auto;">
+        <h2>Registration Form</h2>
+        <form name="regForm" onsubmit="return validateForm()">
+            <!-- Name Field -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <!-- Email Field -->
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email"><br><br>
+
+            <!-- Password Field -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br><br>
+
+            <!-- Gender Radio Buttons -->
+            <label for="gender">Gender:</label><br>
+
+            <input type="radio" id="male" name="gender"  value="Male">
+            <label for="male">Male</label><br>
+            
+            <input type="radio" id="female" name="gender" value="Female">
+            <label for="female">Female</label><br><br>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
     <script>
-        function validateRegistration() {
-            const name = document.forms["regForm"]["name"].value;
-            const email = document.forms["regForm"]["email"].value;
-            const password = document.forms["regForm"]["password"].value;
-            const gender = document.forms["regForm"]["gender"].value;
+        function validateForm() {
+            // Get form fields
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+
+            // Email regex for validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (!name || !email || !password || !gender) {
-                alert("All fields are required!");
-                return false;
+            // Check if Name is filled
+            if (!name) {
+                alert("Name must be filled out.");
+                return false; // Prevent form submission
             }
 
+            // Check if Email is filled and valid
+            if (!email) {
+                alert("Email must be filled out.");
+                return false; // Prevent form submission
+            }
             if (!emailRegex.test(email)) {
-                alert("Enter a valid email address");
-                return false;
+                alert("Please enter a valid email address.");
+                return false; // Prevent form submission
             }
 
-            alert("Registration successful!");
-            return true;
+            // Check if Password is filled
+            if (!password) {
+                alert("Password must be filled out.");
+                return false; // Prevent form submission
+            }
+
+            // Check if Gender is selected
+            if (!gender) {
+                alert("Please select your gender.");
+                return false; // Prevent form submission
+            }
+
+            // If all validations pass
+            alert("Form submitted successfully!");
+            return true; // Allow form submission
         }
     </script>
-</head>
-<body>
-    <form name="regForm" onsubmit="return validateRegistration()">
-        <label>Name:</label>
-        <input type="text" name="name"><br>
-        <label>Email:</label>
-        <input type="text" name="email"><br>
-        <label>Password:</label>
-        <input type="password" name="password"><br>
-        <label>Gender:</label>
-        <input type="radio" name="gender" value="Male"> Male
-        <input type="radio" name="gender" value="Female"> Female<br>
-        <button type="submit">Register</button>
-    </form>
 </body>
+
 </html>
